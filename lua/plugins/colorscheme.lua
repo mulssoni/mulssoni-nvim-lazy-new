@@ -16,7 +16,12 @@ return {
     "sainnhe/sonokai",
     config = function()
       vim.g.sonokai_style = "andromeda"
-      vim.cmd("colorscheme sonokai")
+      -- vim.cmd("colorscheme sonokai")
     end,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = { style = "storm" },
   },
 }
