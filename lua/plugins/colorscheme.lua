@@ -22,6 +22,15 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = true,
-    opts = { style = "storm" },
+    config = function()
+      require("tokyonight").setup({
+        transparent = true,
+        style = "storm",
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+      })
+    end,
   },
 }

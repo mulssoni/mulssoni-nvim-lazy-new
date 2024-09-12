@@ -5,9 +5,9 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
--- Icrement and decrement numbers
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
+-- -- Icrement and decrement numbers
+-- keymap.set("n", "+", "<C-a>")
+-- keymap.set("n", "-", "<C-x>")
 
 -- Select all text
 keymap.set("n", "<C-a>", "gg<S-v>G")
@@ -24,12 +24,12 @@ keymap.set("n", "<C-j>", function()
 end, opts)
 
 -- Copilot
-vim.keymap.set("i", "<C-y>", 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false,
-})
-vim.g.copilot_no_tab_map = true
-vim.keymap.set("i", "<C-e>", "<Plug>(copilot-dismiss)")
+-- vim.keymap.set("i", "<C-y>", 'copilot#Accept("\\<CR>")', {
+--   expr = true,
+--   replace_keycodes = false,
+-- })
+-- vim.g.copilot_no_tab_map = true
+-- vim.keymap.set("i", "<C-e>", "<Plug>(copilot-dismiss)")
 
 -- Inc Rename
 keymap.set("n", "<leader>rn", ":IncRename ")

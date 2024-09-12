@@ -8,9 +8,7 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   opts = {
-    inlay_hints = {
-      enable = false,
-    },
+    inlay_hints = { enabled = false },
     servers = {
       tsserver = {
         enabled = false,
@@ -42,14 +40,14 @@ return {
             suggest = {
               completeFunctionCalls = true,
             },
-            inlayHints = {
-              enumMemberValues = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
-              parameterNames = { enabled = "literals" },
-              parameterTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              variableTypes = { enabled = false },
-            },
+            -- inlayHints = {
+            --   enumMemberValues = { enabled = true },
+            --   functionLikeReturnTypes = { enabled = false },
+            --   parameterNames = { enabled = "literals" },
+            --   parameterTypes = { enabled = false },
+            --   propertyDeclarationTypes = { enabled = false },
+            --   variableTypes = { enabled = false },
+            -- },
           },
         },
         keys = {
