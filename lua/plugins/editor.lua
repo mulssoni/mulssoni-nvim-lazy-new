@@ -39,6 +39,7 @@ return {
         "scss",
         "sql",
         "svelte",
+        "vue",
       })
     end,
     config = function(_, opts)
