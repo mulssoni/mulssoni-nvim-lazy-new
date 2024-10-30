@@ -158,7 +158,6 @@ return {
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
-    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
     -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")
@@ -294,6 +293,22 @@ return {
               },
             },
           },
+        })
+      end,
+    })
+    -- VOLAR TAKEOVER
+    lspconfig.volar.setup({
+      filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+    })
+    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
+
+    -- ESLINT VSCODE
+    lspconfig.eslint.setup({
+      --- ...
+      on_attach = function(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
         })
       end,
     })
