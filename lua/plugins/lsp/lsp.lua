@@ -23,6 +23,7 @@ return {
           "typescript",
           "typescriptreact",
           "typescript.tsx",
+          "vue",
         },
         settings = {
           complete_function_calls = true,
@@ -40,14 +41,7 @@ return {
             suggest = {
               completeFunctionCalls = true,
             },
-            -- inlayHints = {
-            --   enumMemberValues = { enabled = true },
-            --   functionLikeReturnTypes = { enabled = false },
-            --   parameterNames = { enabled = "literals" },
-            --   parameterTypes = { enabled = false },
-            --   propertyDeclarationTypes = { enabled = false },
-            --   variableTypes = { enabled = false },
-            -- },
+            inlay_hints = { enabled = false },
           },
         },
         keys = {
@@ -296,21 +290,61 @@ return {
         })
       end,
     })
-    -- VOLAR TAKEOVER
-    lspconfig.volar.setup({
-      filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-    })
-    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
-    -- ESLINT VSCODE
-    lspconfig.eslint.setup({
-      --- ...
-      on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          command = "EslintFixAll",
-        })
-      end,
-    })
+    -- local mason_registry = require("mason-registry")
+    -- local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+    --   .. "/node_modules/@vue/language-server"
+    --
+    -- lspconfig.tsserver.setup({
+    --   init_options = {
+    --     plugins = {
+    --       {
+    --         name = "@vue/typescript-plugin",
+    --         location = vue_language_server_path,
+    --         languages = { "vue" },
+    --       },
+    --     },
+    --   },
+    --   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+    -- })
+    --
+    -- -- No need to set `hybridMode` to `true` as it's the default value
+    -- lspconfig.volar.setup({})
+    --
+    -- -- ESLINT VSCODE
+    -- lspconfig.eslint.setup({
+    --   --- ...
+    --   on_attach = function(client, bufnr)
+    --     vim.api.nvim_create_autocmd("BufWritePre", {
+    --       buffer = bufnr,
+    --       command = "EslintFixAll",
+    --     })
+    --   end,
+    -- })
+    --
+    -- local util = require("lspconfig.util")
+    -- local function get_typescript_server_path(root_dir)
+    --   local global_ts = "/home/samulivalimaki/.npm/lib/node_modules/typescript/lib"
+    --   -- Alternative location if installed as root:
+    --   -- local global_ts = '/usr/local/lib/node_modules/typescript/lib'
+    --   local found_ts = ""
+    --   local function check_dir(path)
+    --     found_ts = util.path.join(path, "node_modules", "typescript", "lib")
+    --     if util.path.exists(found_ts) then
+    --       return path
+    --     end
+    --   end
+    --   if util.search_ancestors(root_dir, check_dir) then
+    --     return found_ts
+    --   else
+    --     return global_ts
+    --   end
+    -- end
+    --
+    -- require("lspconfig").volar.setup({
+    --   on_new_config = function(new_config, new_root_dir)
+    --     new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+    --   end,
+    -- })
   end,
 }
